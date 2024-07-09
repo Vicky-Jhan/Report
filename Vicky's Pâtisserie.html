@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vicky's Pâtisserie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="./img/title 4.png">
+    <link href="https://fonts.googleapis.com/css2?family=Yeon+Sung&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        body,
+        html {
+            /* overflow-x: hidden; */
+            margin: 0;
+        }
+
+        .topNav {
+            background-image: url(./img/bg.png);
+            background-size: 400px;
+            overflow: hidden;
+            /* position: -webkit-sticky; */
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 500;
+
+        }
+
+        .topNav a {
+            float: left;
+            color: lightcoral;
+            text-align: center;
+            padding: 20px 60px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: transparent;
+        }
+
+        .topNav a:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: goldenrod;
+        }
+
+        .topNav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 800px) {
+            .topNav a:not(:first-child) {
+                display: none;
+            }
+
+            .topNav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .topNav.responsive {
+                position: relative;
+                position: sticky;
+            }
+
+            .topNav.responsive a.icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .topNav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+
+        #SALES {
+            color: red;
+        }
+
+        #SALES:hover {
+            background-color: red;
+            color: floralwhite;
+        }
+
+
+        .container {
+            padding-left: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container img {
+            width: 200px;
+            height: 200px;
+            padding-top: 40px;
+            padding-left: 520px;
+            padding-bottom: 20px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container div a {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+                height: 150px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .container img {
+                padding-left: 30px;
+                padding-top: 40px;
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        #FB,
+        #IG,
+        #Phone {
+            margin-top: 150px;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-color: transparent;
+            margin-right: 30px;
+        }
+
+        #FB:hover,
+        #IG:hover,
+        #Phone:hover {
+            background-color: lightpink;
+            border-radius: 50px;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            #FB,
+            #IG,
+            #Phone {
+                margin-top: 100px;
+                margin-right: 10px;
+                display: none;
+            }
+        }
+
+        #FB {
+            background-image: url("./img/FB.png");
+        }
+
+        #IG {
+            background-image: url("./img/IG.png");
+        }
+
+        #Phone {
+            background-image: url("./img/Phone.png");
+        }
+
+        #Phone:hover {
+            cursor: pointer;
+        }
+
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 2px solid rgb(234, 208, 142);
+            border-radius: 20px;
+            width: 50%;
+            max-width: 90%;
+            font-family: 'Yeon Sung', cursive;
+            font-size: 2vw;
+        }
+
+        .modal-content .tel {
+            color: goldenrod;
+        }
+
+        .modal-content .tel:hover {
+            color: bisque;
+        }
+
+        @media screen and (max-width: 800px) {
+            .modal-content {
+                width: 50%;
+                font-size: 3vw;
+            }
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            text-decoration: underline;
+            color: goldenrod;
+            font-size: 2.5vw;
+        }
+
+        .modal-content h3 {
+            padding-left: 20px;
+            text-decoration-color: goldenrod;
+            font-size: 2vw;
+
+        }
+
+        @media screen and (max-width: 800px) {
+            .modal-content h3 {
+                font-size: 4vw;
+
+            }
+
+            .modal-content h2 a {
+                font-size: 3vw;
+            }
+        }
+
+
+        .close {
+            color: goldenrod;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: bisque;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        /* carousel */
+        .carousel-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .carousel-container .carousel-slide img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .prev-btn {
+            left: 30px;
+            background-color: transparent;
+            font-size: 30px;
+            color: lightcoral;
+        }
+
+        @media screen and (max-width: 800px) {
+            .prev-btn {
+                left: 10px;
+                color: pink
+            }
+        }
+
+        .next-btn {
+            right: 30px;
+            background-color: transparent;
+            font-size: 30px;
+            color: lightcoral;
+        }
+
+        @media screen and (max-width: 800px) {
+            .next-btn {
+                right: 10px;
+                color: pink;
+            }
+        }
+
+        #go_top {
+            position: fixed;
+            background-color: rgba(255, 192, 203, 0.9);
+            border-radius: 10px;
+            bottom: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+        }
+
+        #go_top:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: lightpink;
+        }
+
+        #bottom {
+            background-color: lightcoral;
+            bottom: 0;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 0;
+        }
+
+        @media screen and (max-width: 800px) {
+            #bottom {
+                bottom: 0;
+                height: 700px;
+            }
+        }
+
+        #bottom #bottom_title {
+            background-color: white;
+            width: 120px;
+            height: 120px;
+            position: relative;
+            top: 20px;
+            margin: auto;
+            border-radius: 30px;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            /* 圖片最大寬度不超過其容器的寬度 */
+            height: auto;
+            /* 高度自動調整，保持比例 */
+            display: block;
+            /* 確保圖片作為塊級元素顯示，避免意外的間距問題 */
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            /* 將內容在容器中置中 */
+            align-items: center;
+            /* 垂直居中對齊 */
+            margin-top: 20px;
+            /* 可以根據需要調整上邊距 */
+            color: white;
+        }
+
+        @media screen and (max-width: 800px) {
+            .flex-container {
+                display: block;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .flex-container .flex-item {
+                padding: 10px;
+            }
+        }
+
+        .flex-item {
+            flex: 1;
+            /* 彈性佈局，每個元素佔比相同 */
+            text-align: center;
+            /* 文本水平置中 */
+        }
+
+        /* 根據需要調整標題的樣式 */
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        #FaceBook {
+            color: white;
+            font-size: 30px;
+        }
+
+        #FaceBook:hover {
+            color: pink;
+        }
+
+        #InsTaGram {
+            color: white;
+            font-size: 30px;
+        }
+
+        #InsTaGram:hover {
+            color: pink;
+        }
+
+        #Designer {
+            color: white;
+            /* background-color: aqua; */
+            height: 50px;
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 0;
+        }
+
+        @media screen and (max-width: 800px) {
+            #Designer {
+                height: 20px;
+                padding-top: 10px;
+            }
+        }
+
+        #AddRess {
+            color: white;
+            text-decoration: none;
+        }
+
+        #AddRess:hover {
+            color: pink;
+        }
+
+        #Buy {
+            width: 100%;
+            height: 500px;
+            background-image: url(./img/訂購問題.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 2vw;
+        }
+
+        #Buy div {
+            color: goldenrod;
+            font-family: 'Yeon Sung', cursive;
+            width: 60vw;
+        }
+
+        @media screen and (max-width: 800px) {
+            #Buy {
+                font-size: 4vw;
+            }
+        }
+
+        #PNumBer {
+            display: none;
+        }
+
+        @media screen and (max-width: 800px) {
+            #PNumBer {
+                display: inline;
+                position: relative;
+                float: right;
+                font-size: 3.5vw;
+                color: lightcoral;
+                margin-right: 20px;
+                margin-bottom: 10px;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+        }
+
+        #crocodile {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0px;
+            background-image: url(./img/背景素材.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+        }
+
+        .left,
+        .right {
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .left {
+            background-color: white;
+            margin: 30px 0px 30px 50px;
+            width: 80%;
+
+            /* border-radius: 10px */
+        }
+
+        .right {
+            background-color: rgba(128, 128, 128, 0.5);
+            /* margin: 0px 50px 0px 0px; */
+            font-family: 'Yeon Sung', cursive;
+            padding: 10px 50px;
+            color: white;
+            margin: 0px 30px;
+        }
+
+        .right #welcome {
+            font-size: 2.5vw;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+
+        }
+
+        .right #LTT {
+            font-size: 1.8vw;
+        }
+
+        .right #ConTenT {
+            font-size: 1.4vw;
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            #crocodile {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+
+            .right {
+                padding-bottom: 10px;
+                margin: 0;
+                padding-bottom: 20px;
+            }
+
+            .right #welcome {
+                font-size: 7.6vw;
+                text-align: center;
+
+            }
+
+            .right #LTT {
+                font-size: 4vw;
+            }
+
+            .right #ConTenT {
+                font-size: 3vw;
+            }
+
+
+
+        }
+
+        #mille {
+            width: 70%;
+            margin-left: 100px;
+        }
+
+        #milleText {
+            background-color: rgba(188, 130, 3, 0.557);
+            margin: 0px 30px;
+        }
+
+        @media (max-width: 800px) {
+            #mille {
+                margin-left: 70px;
+                order: -1;
+            }
+
+            #milleText {
+                padding: 10px 50px;
+                margin: 0;
+                padding-bottom: 20px;
+            }
+
+            #milleText #welcome {
+                font-size: 7.6vw;
+            }
+        }
+
+        #aNumber {
+            color: white;
+            text-decoration: underline;
+        }
+
+        #aNumber:hover {
+            color: pink;
+        }
+
+        #more_buttton1 {
+            float: right;
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            padding: 10px 20px;
+            font-family: 'Yeon Sung', cursive;
+            font-size: 1.3vw;
+            color: bisque;
+        }
+
+        .button {
+            text-decoration: none;
+            /* 去除链接的下划线 */
+            color: rgb(75, 75, 75);
+            /* 设置链接文本颜色 */
+        }
+
+        .button:hover {
+            color: white;
+        }
+
+        .box {
+            color: brown;
+            text-decoration: none;
+        }
+
+        .box:hover {
+            color: white;
+        }
+
+
+        @media (max-width:800px) {
+            #more_buttton1 {
+                text-align: center;
+                font-size: 3vw;
+                /* float: none; */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div
+        style="background-color: rgba(255, 192, 203, 0.9);  width: 100%; height: 40px; color: white; display: flex; justify-content: center; align-items: center; padding-bottom: 10px;">
+        <h3><b>Vicky is the most beautiful girl in the world.</b></h3>
+    </div>
+
+    <div class="container">
+
+        <div style="flex: 30;">
+                <img src="./img/title 4.png" class="img-fluid">
+        </div>
+
+        <div style="flex: 2;">
+            <a href="https://www.facebook.com/profile.php?id=100005049362163&locale=zh_TW" target="_blank">
+                <div id="FB"></div>
+            </a>
+        </div>
+        <div style="flex: 2;">
+            <a href="https://www.instagram.com/vicky22255/" target="_blank">
+                <div id="IG"></div>
+            </a>
+        </div>
+        <div style="flex: 2;">
+            <button style="background-color: transparent; border: none;">
+                <div id="Phone"></div>
+            </button>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3 style="color: goldenrod;">訂購專線：</h3>
+                <h2><a href="tel:+0266666666" id="A_numBer" class="tel">02-6666-6666</a></h2>
+            </div>
+        </div>
+
+    </div>
+    <div id="PNumBer">
+        <b>TEL：<a href="tel:+0266666666" style="color: lightcoral;"><u>02 - 6666 - 6666</u></a></b>
+    </div>
+
+    <div class="topNav" id="myTopnav">
+        <a class="active" href="./Vicky's Pâtisserie.html" style="background-color: lightcoral;">
+            <i class="bi bi-house" style="color: white;"><b> HOME</b></i>
+        </a>
+        <a href="#">|&nbsp;&nbsp;
+            <i class="bi bi-cookie"> &nbsp;Cookie </i>
+            &nbsp;&nbsp;|</a>
+        <a href="#">|&nbsp;&nbsp;
+            <i class="bi bi-cake"> &nbsp;Cake </i>
+            &nbsp;&nbsp;|</a>
+        <a href="#">|&nbsp;&nbsp;
+            <i class="bi bi-three-dots"> &nbsp;Others</i>
+            &nbsp;&nbsp;|</a>
+        <a href="#" id="SALES">|
+            <i class="bi bi-percent"><b> &nbsp;SALES</b></i>
+            &nbsp;&nbsp;|</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <!-- carousel -->
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="./img/macaron.png">
+            <img src="./img/new arrival.png">
+            <img src="./img/OnSale.png">
+        </div>
+        <button class="carousel-btn prev-btn">&#10094;</button>
+        <button class="carousel-btn next-btn">&#10095;</button>
+    </div>
+
+    <div id="Buy">
+        <div>
+            親愛的顧客，<br><br>
+            抱歉，由於技術原因，目前僅能透過電話接受訂購服務。
+            如果您需要購買商品，請直接致電我們的客服部門。
+            若有任何疑問或需要協助，隨時歡迎與我們聯繫。
+            非常感謝您的理解與支持。
+        </div>
+    </div>
+
+    <div class="grid-container" id="crocodile">
+        <div class="grid-item left">
+            <img src="./甜點/鱷魚餅乾1.jpg" class="img-fluid">
+        </div>
+        <div class="grid-item right">
+            <p id="welcome">Discover Our Handmade Cookies!</p>
+
+            <p id="LTT">美味與健康的完美結合</p>
+            <p id="ConTenT">在忙碌的生活中，一份美味的餅乾可以為您帶來無限的驚喜和愉悅。
+                我們的手工餅乾精選上等材料，烘焙時充滿愛心與細心，
+                每一口都是品質的保證。</p>
+            <br>
+            <p id="LTT">獨特的口味，無限的選擇</p>
+            <p id="ConTenT">無論您喜歡濃郁的巧克力、苦甜的抹茶，還是經典的牛油味道，
+                我們都能為您提供最好的選擇。每一種口味都是精心調配，
+                讓您享受到每一口的純正滋味。</p>
+            <button id="more_buttton1" class="button">
+                <a href="" class="button"><i>餅乾專區 <i class="bi bi-chevron-double-right"></i></i></a>
+            </button>
+        </div>
+    </div>
+
+    <div class="grid-container" id="crocodile" style="background-image: url(./img/bbbggg.png);">
+
+        <div class="grid-item right" id="milleText">
+            <p id="welcome">Discover Our Handmade Cakes!</p>
+
+            <p id="LTT">健康與天然，從每一塊蛋糕開始</p>
+            <p id="ConTenT">我們注重健康，所有蛋糕均不含人工添加劑，
+                使用的原料都是經過嚴格挑選的天然食材。
+                每一塊蛋糕都是對健康的尊重和保護，
+                讓您吃得安心又放心。</p>
+            <br>
+            <p id="LTT">讓生活更甜美</p>
+            <p id="ConTenT">不論是獨自享用還是與朋友分享，
+                我們的蛋糕都能為您帶來一份美好。放鬆心情，
+                讓生活更甜美！
+            </p>
+            <button id="more_buttton1">
+                <a href="" class="box"><i>蛋糕專區 <i class="bi bi-chevron-double-right"></i></i></a>
+            </button>
+        </div>
+        <div class="grid-item left" id="mille">
+            <img src="./甜點/水果千層 一片.jpg" class="img-fluid">
+        </div>
+    </div>
+
+
+
+
+
+    <div id="bottom">
+        <div id="bottom_title">
+            <img src="./img/title 4.png" class="img-fluid">
+        </div>
+        <div class="flex-container">
+            <div class="flex-item">
+                <h1>Open Hours</h1>
+                <h3>13：00 ~ 20：00</h3>
+                <h4>週二公休</h4>
+            </div>
+            <div class="flex-item">
+                <h1>Contact Us</h1>
+                <h3><a href="tel:+02-6666-6666" id="aNumber">02 - 6666 - 6666</a></h3>
+                <h4><a href="https://maps.app.goo.gl/Hwj8PASKUaZJQ2PCA" id="AddRess">
+                        <i class="bi bi-geo-alt"></i> 台中市##區%%路100-23號1樓
+                    </a>
+                </h4>
+            </div>
+            <div class="flex-item">
+                <h1>Follow Us</h1>
+                <div style="display: inline-flex;">
+                    <h3><a href="https://www.facebook.com/profile.php?id=100005049362163&locale=zh_TW" target="_blank">
+                            <div id="FaceBook"><i class="bi bi-facebook"></i></div>
+                        </a>
+                    </h3>
+                    <h3><a href="https://www.instagram.com/vicky22255/" target="_blank">
+                            <div id="InsTaGram" style="padding-left: 20px;"><i class="bi bi-instagram"></i></div>
+                        </a>
+                    </h3>
+                </div>
+
+                <h4 style="color: lightcoral;">0000</h4>
+            </div>
+        </div>
+        <div id="Designer">
+            Designed & developed by Vicky Jhan
+        </div>
+    </div>
+
+
+
+    <a href="#">
+        <div id="go_top">
+            <i class="bi bi-chevron-bar-up"></i>
+        </div>
+    </a>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topNav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topNav";
+            }
+        }
+
+        function toggleModal() {
+            var modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.style.display = (modalOverlay.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        var modal = document.getElementById("myModal");
+
+        var btn = document.getElementById("Phone");
+
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // carousel
+        document.addEventListener("DOMContentLoaded", function () {
+            const slides = document.querySelector('.carousel-slide');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+
+            let slideIndex = 0;
+
+            function showSlide(index) {
+                // 获取所有轮播图片
+                const carouselImages = slides.querySelectorAll('img');
+                // 隐藏所有图片
+                carouselImages.forEach(img => {
+                    img.style.display = 'none';
+                });
+                // 显示当前索引的图片
+                carouselImages[index].style.display = 'block';
+            }
+
+            function nextSlide() {
+                slideIndex++;
+                if (slideIndex >= slides.children.length) {
+                    slideIndex = 0;
+                }
+                showSlide(slideIndex);
+            }
+
+            function prevSlide() {
+                slideIndex--;
+                if (slideIndex < 0) {
+                    slideIndex = slides.children.length - 1;
+                }
+                showSlide(slideIndex);
+            }
+
+            // 显示初始状态
+            showSlide(slideIndex);
+
+            // 点击按钮切换到上一张或下一张图片
+            prevBtn.addEventListener('click', prevSlide);
+            nextBtn.addEventListener('click', nextSlide);
+
+            // 自动轮播
+            setInterval(nextSlide, 3000);
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vicky's Pâtisserie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="icon" href="./img/title 4.png">
+
+    <style>
+        body,
+        html {
+            margin: 0;
+        }
+
+        .topNav {
+            background-image: url(./img/bg.png);
+            background-size: 400px;
+            overflow: hidden;
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 500;
+
+        }
+
+        .topNav a {
+            float: left;
+            color: lightcoral;
+            text-align: center;
+            padding: 20px 60px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: transparent;
+
+        }
+
+        .topNav a:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            color: goldenrod;
+        }
+
+        .topNav .icon {
+            display: none;
+        }
+
+        @media screen and (max-width: 800px) {
+            .topNav a:not(:first-child) {
+                display: none;
+            }
+
+            .topNav a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .topNav.responsive {
+                position: relative;
+                position: sticky;
+            }
+
+            .topNav.responsive a.icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .topNav.responsive a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+
+        #SALES {
+            color: red;
+        }
+
+        #SALES:hover {
+            background-color: red;
+            color: floralwhite;
+        }
+
+
+        .container {
+            padding-left: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            height: 80px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .container img {
+            width: 250px;
+            height: 70px;
+            padding-top: 10px;
+            padding-left: 30px;
+            padding-bottom: 10px;
+            margin-top: 10px;
+
+        }
+
+        @media screen and (max-width: 600px) {
+            .container div a {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+                height: 80px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .container img {
+                padding-left: 20px;
+                padding-top: 20px;
+                width: 220px;
+                height: 60px;
+            }
+        }
+
+        #FB,
+        #IG,
+        #Phone {
+            margin-top: 50px;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-color: transparent;
+        }
+
+        @media screen and (max-width: 800px) {
+
+            #FB,
+            #IG,
+            #Phone {
+                margin-top: 50px;
+                margin-right: 10px;
+            }
+        }
+
+        #FB {
+            background-image: url("./img/FB.png");
+        }
+
+        #IG {
+            background-image: url("./img/IG.png");
+        }
+
+        #Phone {
+            background-image: url("./img/Phone.png");
+        }
+
+        #Phone:hover {
+            cursor: pointer;
+        }
+
+
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: antiquewhite;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 2px solid goldenrod;
+            width: 50%;
+        }
+
+        .modal-content h2 {
+            text-align: center;
+            text-decoration: underline;
+            text-decoration-color: goldenrod;
+        }
+
+        .close {
+            color: goldenrod;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: bisque;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #go_top {
+            position: fixed;
+            background-color: rgba(255, 192, 203, 0.9);
+            border-radius: 10px;
+            bottom: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+        }
+
+        #go_top:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            color: lightpink;
+        }
+
+        #bottom {
+            background-color: lightcoral;
+            bottom: 0;
+            width: 100%;
+            height: 400px;
+            margin-bottom: 0;
+        }
+
+        @media screen and (max-width: 800px) {
+            #bottom {
+                bottom: 0;
+                height: 700px;
+            }
+        }
+
+        #bottom #bottom_title {
+            background-color: white;
+            width: 120px;
+            height: 120px;
+            position: relative;
+            top: 20px;
+            margin: auto;
+            border-radius: 30px;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            /* 圖片最大寬度不超過其容器的寬度 */
+            height: auto;
+            /* 高度自動調整，保持比例 */
+            display: block;
+            /* 確保圖片作為塊級元素顯示，避免意外的間距問題 */
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-around;
+            /* 將內容在容器中置中 */
+            align-items: center;
+            /* 垂直居中對齊 */
+            margin-top: 20px;
+            /* 可以根據需要調整上邊距 */
+            color: white;
+        }
+
+        @media screen and (max-width: 800px) {
+            .flex-container {
+                display: block;
+                padding: 10px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+            .flex-container .flex-item {
+                padding: 10px;
+            }
+        }
+
+        .flex-item {
+            flex: 1;
+            /* 彈性佈局，每個元素佔比相同 */
+            text-align: center;
+            /* 文本水平置中 */
+        }
+
+        /* 根據需要調整標題的樣式 */
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        h4 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        #FaceBook {
+            color: white;
+            font-size: 30px;
+        }
+
+        #FaceBook:hover {
+            color: pink;
+        }
+
+        #InsTaGram {
+            color: white;
+            font-size: 30px;
+        }
+
+        #InsTaGram:hover {
+            color: pink;
+        }
+
+        #Designer {
+            color: white;
+            /* background-color: aqua; */
+            height: 50px;
+            text-align: center;
+            padding-top: 50px;
+            padding-bottom: 0;
+        }
+
+        @media screen and (max-width: 800px) {
+            #Designer {
+                height: 20px;
+                padding-top: 10px;
+            }
+        }
+
+        #AddRess {
+            color: white;
+            text-decoration: none;
+        }
+
+        #AddRess:hover {
+            color: pink;
+        }
+
+        #Home {
+            color: goldenrod;
+        }
+
+        #Home:hover {
+            color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div style="flex: 30;">
+            <img src="./img/title_float.png" class="img-fluid">
+        </div>
+        <div style="flex: 2;">
+            <a href="https://www.facebook.com/profile.php?id=100005049362163&locale=zh_TW" target="_blank">
+                <div id="FB"></div>
+            </a>
+        </div>
+        <div style="flex: 2;">
+            <a href="https://www.instagram.com/vicky22255/" target="_blank">
+                <div id="IG"></div>
+            </a>
+        </div>
+        <div style="flex: 2;">
+            <button style="background-color: transparent; border: none;">
+                <div id="Phone"></div>
+            </button>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h3>
+                    <p style="color: goldenrod; font-weight: bold;">訂購專線：</p>
+                </h3>
+                <h2>
+                    <p style="color: goldenrod; font-weight: bold;">02-6666-6666</p>
+                </h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="topNav" id="myTopnav">
+        <a class="active" href="./Vicky's Pâtisserie.html">
+            <i class="bi bi-house" id="Home"><b> HOME</b></i>
+        </a>
+        <a href="#" style="background-color: lightcoral; color: white;">|&nbsp;&nbsp;
+            <i class="bi bi-cookie"> &nbsp;Cookie </i>
+            &nbsp;&nbsp;|</a>
+        <a href="#">|&nbsp;&nbsp;
+            <i class="bi bi-cake"> &nbsp;Cake </i>
+            &nbsp;&nbsp;|</a>
+        <a href="#">|&nbsp;&nbsp;
+            <i class="bi bi-three-dots"> &nbsp;Others</i>
+            &nbsp;&nbsp;|</a>
+        <a href="#" id="SALES">|
+            <i class="bi bi-percent"><b> &nbsp;SALES</b></i>
+            &nbsp;&nbsp;|</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+
+
+
+
+
+
+
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+    <p>ddddddddddd</p>
+
+
+
+    <div id="bottom">
+        <div id="bottom_title">
+            <img src="./img/title 4.png" class="img-fluid">
+        </div>
+        <div class="flex-container">
+            <div class="flex-item">
+                <h1>Open Hours</h1>
+                <h3>13：00 ~ 20：00</h3>
+                <h4>週二公休</h4>
+            </div>
+            <div class="flex-item">
+                <h1>Contact Us</h1>
+                <h3><u>02 - 6666 - 6666</u></h3>
+                <h4><a href="https://maps.app.goo.gl/Hwj8PASKUaZJQ2PCA" id="AddRess">
+                        <i class="bi bi-geo-alt"></i> 台中市##區%%路100-23號1樓
+                    </a>
+                </h4>
+            </div>
+            <div class="flex-item">
+                <h1>Follow Us</h1>
+                <div style="display: inline-flex;">
+                    <h3><a href="https://www.facebook.com/profile.php?id=100005049362163&locale=zh_TW" target="_blank">
+                            <div id="FaceBook"><i class="bi bi-facebook"></i></div>
+                        </a>
+                    </h3>
+                    <h3><a href="https://www.instagram.com/vicky22255/" target="_blank">
+                            <div id="InsTaGram" style="padding-left: 20px;"><i class="bi bi-instagram"></i></div>
+                        </a>
+                    </h3>
+                </div>
+
+                <h4 style="color: lightcoral;">0000</h4>
+            </div>
+        </div>
+        <div id="Designer">
+            Designed & developed by Vicky Jhan
+        </div>
+    </div>
+
+
+
+    <a href="#">
+        <div id="go_top">
+            <i class="bi bi-chevron-bar-up"></i>
+        </div>
+    </a>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myTopnav");
+            if (x.className === "topNav") {
+                x.className += " responsive";
+            } else {
+                x.className = "topNav";
+            }
+        }
+
+        function toggleModal() {
+            var modalOverlay = document.getElementById('modalOverlay');
+            modalOverlay.style.display = (modalOverlay.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        var modal = document.getElementById("myModal");
+
+        var btn = document.getElementById("Phone");
+
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
